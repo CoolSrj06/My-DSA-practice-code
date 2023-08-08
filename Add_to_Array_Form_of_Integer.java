@@ -1,23 +1,43 @@
 import java.util.*;
 public class Add_to_Array_Form_of_Integer {
     public static void main(String[] args) {
-        int[] num={9,9,9,9,9,9,9,9,9,9};
-        int k=1;
+//        int[] num={9,9,9,9,9,9,9,9,9,9};
+        int[] num={0};
+        int k=123;
 //        int[] num={1,2,6,3,0,7,1,7,1,9,7,5,6,6,4,4,0,0,6,3};
 
         System.out.println(addArrays(num,k));
     }
     public static List<Integer> addArrays(int[] num,int k) {
-        int[] knum=new int[num.length];
-        int j= num.length-1;
-        while (k!=0){
-            knum[j]=k%10;
-            k=k/10;
-            j--;
+        int[] knum;
+        if (num.length>=Math.log10(k)+1) {
+            knum=new int[num.length];
+            int j = num.length - 1;
+            while (k != 0) {
+                knum[j] = k % 10;
+                k = k / 10;
+                j--;
+            }
+        }else {
+            int j=(int)Math.log10(k);
+            knum=new int[j+1];
+            while (j>-1) {
+                knum[j] = k % 10;
+                k = k / 10;
+                j--;
+            }
         }
+        int len;
         List<Integer> ans=new ArrayList<>();
-        for (int i=0;i< num.length;i++){
-            ans.add(num[i]+knum[i]);
+        if (num.length>=knum.length)
+            len= num.length;
+        else
+            len=knum.length;
+        for (int i= len-1,j=0;i> -1;i--,j++){
+            if (num.length>=j)
+                ans.add(num[j]+knum[i]);
+            else
+                ans.add(knum[i]);
         }
         for (int i= num.length-1;i>-1;i--){
             if(ans.get(i)>=10){
