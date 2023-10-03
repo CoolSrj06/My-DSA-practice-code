@@ -33,7 +33,7 @@ public class Sachin_assignment {
                     start++;
                     end--;
 
-                };
+                }
             }
             function(nums,low,end,bustTime);
             function(nums,start,high,bustTime);
